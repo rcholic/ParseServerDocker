@@ -1,0 +1,41 @@
+version: '2'
+services:
+  nginx_portal2:
+    image: steveltn/https-portal
+    container_name: nginx_proxy_container2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./ssl_letsen:/var/lib/https-portal
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+     DOMAINS: 'parse3.iparroting.net -> http://parse_server2:1337'
+     #DOMAINS: 'parse2.iparroting.net -> http://parse.iparroting.net:1337/'
+     STAGE: 'production'
+    networks:
+      - frontend
+
+  parse_server2:
+    build: .
+    container_name: parse_server2
+    environment:
+      - APP_ID=myAppId
+      - MASTER_KEY=masterKey
+      - DATABASE_URI=mongodb://test:Welcome01@ds153705.mlab.com:53705/iparroting
+      - SERVER_URL=http://parse.iparroting.net
+      - VIRTUAL_HOST=parse.iparroting.net
+      - VIRTUAL_PROTO=http
+    volumes:
+      - "./:/host"
+    ports:
+      - "1337:1337"
+    networks:
+      - frontend
+      - backend
+      
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
