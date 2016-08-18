@@ -20,10 +20,14 @@ services:
     build: .
     container_name: parse_server2
     environment:
-      - APP_ID=myAppId
-      - MASTER_KEY=masterKey
-      - DATABASE_URI=mongodb://test:Welcome01@ds153705.mlab.com:53705/iparroting
-      - SERVER_URL=http://parse.iparroting.net
+      - APP_ID
+      - MASTER_KEY
+      - DATABASE_URI
+      - SERVER_URL
+      - S3_ACCESS_KEY
+      - S3_SECRET_KEY
+      - S3_BUCKET
+      - S3_DIRECT
       - VIRTUAL_HOST=parse.iparroting.net
       - VIRTUAL_PROTO=http
     volumes:

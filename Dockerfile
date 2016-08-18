@@ -6,11 +6,10 @@ ADD . /parse
 WORKDIR /parse
 RUN npm install
 RUN npm install -g forever pm2
-
-ENV APP_ID myAppId
-ENV MASTER_KEY masterKey
-ENV DATABASE_URI mongodb://test:Welcome01@ds153705.mlab.com:53705/iparroting
-
+#ENV APP_ID
+#ENV MASTER_KEY
+#ENV DATABASE_URI
+#ENV FILE_KEY
 # Optional (default : 'parse/cloud/main.js')
 # ENV CLOUD_CODE_MAIN cloudCodePath
 
