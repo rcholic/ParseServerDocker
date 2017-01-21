@@ -10,7 +10,7 @@ services:
       - ./ssl_letsen:/var/lib/https-portal
       - /var/run/docker.sock:/tmp/docker.sock:ro
     environment:
-     DOMAINS: 'parse3.iparroting.net -> http://parse_server2:1337'
+     DOMAINS: 'parse.iparroting.net -> http://parse_server2:1337'
      #DOMAINS: 'parse2.iparroting.net -> http://parse.iparroting.net:1337/'
      STAGE: 'production'
     networks:
