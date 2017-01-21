@@ -16,6 +16,14 @@ services:
     networks:
       - frontend
 
+  MongoDB:
+    image: mongo
+    container_name: mongo_parse
+    volumes:
+      - ../parse_mongo_data:/data/db
+    networks:
+      - backend
+
   parse_server2:
     build: .
     container_name: parse_server2
@@ -32,6 +40,8 @@ services:
       - VIRTUAL_PROTO=http
     volumes:
       - "./:/host"
+    links:
+      - MongoDB:MongoDB
     ports:
       - "1337:1337"
     networks:
